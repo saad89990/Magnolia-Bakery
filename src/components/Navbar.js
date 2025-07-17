@@ -84,7 +84,7 @@ export default function Navbar() {
           className="navbar-brand fs-1 fst-italic fw-bold text-white"
           to="/"
         >
-          Arham Cake
+          Magnolia Bakery
         </Link>
 
         <button
