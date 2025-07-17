@@ -20,8 +20,9 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use("/api", userRouter, dataRouter,prouter,razorpay_router);
 
+//"mongodb://127.0.0.1:27017/fooddb"
 // ✅ STEP 1: Connect Mongoose
-mongoose.connect("mongodb://127.0.0.1:27017/fooddb", {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -29,7 +30,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/fooddb", {
   console.log("✅ Mongoose connected");
 
   // ✅ STEP 2: Connect native MongoDB client for global collections
-  return ConnectMongoDB("mongodb://127.0.0.1:27017/fooddb");
+  return ConnectMongoDB(process.env.MONGO_URI);
 })
 .then(async (client) => {
   console.log("✅ Native MongoDB client connected");
