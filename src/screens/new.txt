@@ -1,0 +1,78 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "./Login.css";
+const BASE_URL = process.env.BASE_URL || "http://localhost:5005";
+
+export default function Login() {
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${BASE_URL}/api/loginuser`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }, 
+        body: JSON.stringify(credentials),
+        credentials:"include",
+      });
+      const json = await response.json();
+      console.log(json);
+      if(response.ok){
+        toast.success("Login Succesully");
+        localStorage.setItem("sitelogintoken",json.sitelogintoken);
+        localStorage.setItem("userid",json.userid);
+        localStorage.setItem("email",json.email);
+        localStorage.setItem("name",json.name);
+        setTimeout(() => {
+        navigate("/");
+      }, 2000); // ✅ delay 
+      }
+      else{
+        toast.error(json.error ||"Login Failed");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <div className="login-page">
+      <div className="container">
+        <div className="screen">
+          <div className="screen__content">
+            <h2 className="login-quote">"A cake is happiness you can eat. Log in and sweeten your journey!"</h2>
+            <form className="login" onSubmit={handleSubmit}>
+              <div className="login__field">
+                <i className="login__icon fas fa-user"></i>
+                <input type="email" className="login__input" name="email" placeholder="User name / Email" required onChange={onChange} />
+              </div>
+              <div className="login__field">
+                <i className="login__icon fas fa-lock"></i>
+                <input type={showPassword ? "text" : "password"} className="login__input" name="password" placeholder="Password" required onChange={onChange} />
+                <button type="button" className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
+                  <i className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`} aria-hidden="true"></i>
+                </button>
+              </div>
+              <button className="button login__submit" type="submit">
+                <span className="button__text">Log In Now</span>
+                <i className="button__icon fas fa-chevron-right"></i>
+              </button>
+            </form>
+            <div className="signup-link">
+              <p>Don't have an account? <span onClick={() => navigate("/createuser")}>Sign up</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ToastContainer position="top-right" autoClose={3000} />
+    </div>
+  );
+}

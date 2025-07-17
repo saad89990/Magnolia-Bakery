@@ -1,0 +1,198 @@
+.login-page {
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* 🌄 Background Image */
+.login-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('https://images.pexels.com/photos/1702373/pexels-photo-1702373.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center;
+  background-size: cover;
+  z-index: -1;
+}
+
+/* ✨ Login Container & Card */
+.login-page .login-container {
+  max-width: 400px;
+  width: 90%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.login-page .glass-card {
+  background: rgba(255, 255, 255, 0.1); /* light transparent */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  text-align: center;
+  width: 100%;
+}
+
+/* 🔥 Title */
+.login-page .login-title {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.login-page .login-subtitle {
+  font-size: 14px;
+  margin-bottom: 30px;
+  color: #eee;
+}
+
+/* 🎯 Input fields */
+.login-page .input-field {
+  width: 100%; /* add this line */
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  background: rgba(255, 255, 255, 0.95);
+  color: #000;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+}
+
+
+.login-page .input-field::placeholder {
+  color: #000; /* black placeholder for white bg */
+  font-weight: 500;
+}
+
+.login-page .input-field:focus {
+  border-color: #ff4b2b;
+  box-shadow: 0 0 0 2px rgba(255, 75, 43, 0.3);
+}
+
+/* 🕶️ Password Field */
+.login-page .password-wrapper {
+  position: relative;
+}
+
+.login-page .password-wrapper input {
+  width: 100%;
+}
+
+.login-page .toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 🚀 Login Button */
+.login-page .login-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-top: 10px;
+}
+
+.login-page .login-btn:hover {
+  transform: scale(1.03);
+}
+
+/* 🧾 Signup Link */
+.login-page .signup-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.login-page .signup-text span {
+  color: #ff4b2b;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ───────────── Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 10px;
+  color: #bbb;
+  font-size: 13px;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0 12px;
+}
+
+/* 🧊 Social Login Buttons - white style */
+.social-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.social-btn:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.social-btn i {
+  font-size: 16px;
+}
+
+/* Google Icon */
+.social-btn.google i {
+  color: #DB4437; /* Google's red or use multicolor logo (see below) */
+}
+
+/* GitHub Icon */
+.social-btn.github i {
+  color: #000; /* GitHub black */
+}
