@@ -6,6 +6,7 @@ const router =express.Router()
 router.post("/fooddata",async(req,res)=>{
      try{
         res.send([global.menuitems,global.categories]);
+        
      }
      catch(error){
         console.log("Error In fetching data",error);

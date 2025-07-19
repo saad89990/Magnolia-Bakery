@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const prouter=require("./controllers/userPurchaseItem.js");
 const razorpay_router=require("./controllers/Razorpay_Apis.js");
-const port = 5005;
+const PORT = process.env.PORT || 5005;
 
 // Middleware
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
@@ -23,8 +23,6 @@ app.use("/api", userRouter, dataRouter,prouter,razorpay_router);
 //"mongodb://127.0.0.1:27017/fooddb"
 // ✅ STEP 1: Connect Mongoose
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
 })
 .then(() => {
   console.log("✅ Mongoose connected");
@@ -39,9 +37,12 @@ mongoose.connect(process.env.MONGO_URI, {
   global.menuitems = await db.collection("menuitems").find({}).toArray();
   global.categories = await db.collection("categories").find({}).toArray();
 
+   console.log("🌍 Loaded categories:", global.categories.length);
+  console.log("🌍 Loaded menuitems:", global.menuitems.length);
+
   // ✅ STEP 3: Start server after both DBs are connected
-  app.listen(port, () => {
-    console.log(`🚀 Server running at http://localhost:${port}`);
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running On Port :${PORT}`);
   });
 })
 .catch((err) => {
