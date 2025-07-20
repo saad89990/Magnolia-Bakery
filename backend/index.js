@@ -12,7 +12,11 @@ const razorpay_router=require("./controllers/Razorpay_Apis.js");
 const PORT = process.env.PORT || 5005;
 
 // Middleware
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({
+  origin: "https://magnolia-bakery-dzfwl8mu7-saad-sheikhs-projects.vercel.app", // Your frontend URL on Vercel
+  credentials: true,
+}));
+// app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
