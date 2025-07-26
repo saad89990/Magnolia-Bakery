@@ -9,13 +9,26 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const prouter=require("./controllers/userPurchaseItem.js");
 const razorpay_router=require("./controllers/Razorpay_Apis.js");
-const PORT = process.env.PORT || 5005;
+const PORT = process.env.PORT;
 
 // Middleware
+// app.use(cors());
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://magnolia-bakery.vercel.app",
+  "https://magnolia-bakery-190d8lp9n-saad-sheikhs-projects.vercel.app"
+];
 app.use(cors({
-  origin: "https://magnolia-bakery-dzfwl8mu7-saad-sheikhs-projects.vercel.app", // Your frontend URL on Vercel
-  credentials: true,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
+
 // app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
