@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Contact.css'; // Make sure to import custom styles
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from 'react-toastify';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
 export default function Contact() {
   const [name,setname]=useState('');
@@ -19,7 +21,7 @@ export default function Contact() {
       userid: userid
     };
     try {
-      const response = await fetch("http://localhost:5005/api/user_query", {
+      const response = await fetch(`${API_BASE_URL}/api/user_query`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +54,7 @@ export default function Contact() {
         <div className="contact-info">
           <div className="info-box">
             <h2><i className="fas fa-envelope"></i> Email</h2>
-            <p><a href="mailto:hello@arhamcake.com">hello@arhamcake.com</a></p>
+            <p><a href="mailto:hello@MagnoliaBakery.com">hello@MagnoliaBakery.com</a></p>
           </div>
           <div className="info-box">
             <h2><i className="fas fa-phone"></i> Phone</h2>

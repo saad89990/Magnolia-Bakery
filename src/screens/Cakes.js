@@ -18,7 +18,7 @@ export default function Cakes() {
           <p>{c.desc}</p>
         </div>
       ))}
-      <Link to="/order" className="contact-form button">Crave something special? Order Now</Link>
+      <Link to="/contact" className="contact-form button">Crave something special? Order Now</Link>
     </div>
   );
 }

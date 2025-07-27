@@ -1,28 +1,28 @@
 import React from "react";
 import "./Testimonial.css";
+import Faizan_Image from '../screens/cake/faizan bhai.jpg';
+import Saad_Image from '../screens/cake/saad_bhai.jpg';
+import Ruman_Image from '../screens/cake/ruman.jpg';
 
 export default function Testimonial() {
   const testimonials = [
     {
-      name: "Ayesha Khan",
+      name: "Saad Sheikh",
       quote:
-        "Arham Cake made my daughter’s birthday unforgettable! The design and flavor were spot on.",
-      image:
-        "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=400&q=80",
+        "Magnolia Bakery made my daughter’s birthday unforgettable! The design and flavor were spot on.",
+      image:Saad_Image,
     },
     {
-      name: "Rohan Mehta",
+      name: "Faizan Sheikh",
       quote:
         "I ordered a custom chocolate truffle for my parents’ anniversary — everyone loved it!",
-      image:
-        "https://images.unsplash.com/photo-1573497019419-2c1a9c65d15e?auto=format&fit=crop&w=400&q=80",
+      image:Faizan_Image,
     },
     {
-      name: "Sneha Patil",
+      name: "Ruman Sheikh",
       quote:
-        "The cake not only looked stunning but tasted divine. Highly recommend Arham Cake!",
-      image:
-        "https://images.unsplash.com/photo-1612436996684-5b6e6a1a4e9d?auto=format&fit=crop&w=400&q=80",
+        "The cake not only looked stunning but tasted divine. Highly recommend Magnolia Bakery!",
+      image:Ruman_Image,
     },
   ];
 

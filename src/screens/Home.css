@@ -1,0 +1,90 @@
+.cake-loading-section {
+  width: 100vw;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(107deg, #ffeacd 10%, #fff9ef 55%, #f5e7ff 100%);
+  position: relative;
+  margin: 0;
+  left: 50%;
+  margin-left: -50vw;
+  right: 50%;
+  margin-right: -50vw;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.cake-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.cake-emoji {
+  font-size: 3.7rem;
+  animation: cake-bounce 0.95s infinite alternate cubic-bezier(0.7,0.3,0.3,0.7);
+  margin-bottom: 12px;
+  will-change: transform;
+  filter: drop-shadow(0 2px 8px #f5d27e70);
+}
+
+@keyframes cake-bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-18px) scale(1.09); }
+}
+
+.cake-loading-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #c78a3a;
+  text-shadow: 0 2px 12px #fffb,0 0px 4px #ffd9ab39;
+  margin-bottom: 30px;
+}
+
+.cake-loading-shimmer {
+  width: 360px;
+  height: 64px;
+  border-radius: 19px;
+  background:
+    repeating-linear-gradient(
+      100deg,
+      #ffe0bb 6%,
+      #ffe0bb 18%,
+      #fff0d0 29%,
+      #ffe0bb 39%
+    );
+  background-size: 290% 100%;
+  animation: shimmerCakeLoading 1.8s linear infinite;
+  box-shadow: 0 1.5px 22px #c6a47536;
+  margin-bottom: 20px;
+  filter: blur(0.1px);
+  position: relative;
+  border: 2.5px solid #ffeec5;
+}
+
+@keyframes shimmerCakeLoading {
+  0% { background-position: 260% 0; }
+  100% { background-position: -190% 0; }
+}
+
+.cake-loading-subtext {
+  margin-top: 14px;
+  font-size: 1.16rem;
+  color: #8f6b3c;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 9px #fff7;
+  opacity: 0.74;
+}
+
+/* Responsive for mobile */
+@media (max-width: 600px) {
+  .cake-loader-content { width: 99vw; }
+  .cake-loading-title { font-size: 1.3rem; }
+  .cake-loading-shimmer { width: 94vw; min-width: 180px; height: 38px;}
+  .cake-emoji { font-size: 2.1rem; }
+  .cake-loading-section { min-height: 300px; }
+}

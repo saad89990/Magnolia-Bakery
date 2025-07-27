@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export default function EditProfile() {
   const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ export default function EditProfile() {
     const fetchUser = async () => {
       try {
         const email=localStorage.getItem("email");
-        const res = await fetch(`http://localhost:5005/api/user-profile/${email}`, {
+        const res = await fetch(`${API_BASE_URL}/api/user-profile/${email}`, {
           method: "GET",
           credentials: "include",
         });
@@ -80,7 +81,7 @@ export default function EditProfile() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5005/api/update-profile", {
+      const res = await fetch(`${API_BASE_URL}/api/update-profile`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ export default function Cart() {
     const userid = localStorage.getItem("userid");
 
     try {
-      const res = await fetch("http://localhost:5005/api/create-order", {
+      const res = await fetch(`${API_BASE_URL}/api/create-order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount }),
@@ -31,7 +32,7 @@ export default function Cart() {
       const orderData = await res.json();
       console.log("✅ Razorpay Order Created:", orderData);
 
-      await fetch("http://localhost:5005/api/save-payment", {
+      await fetch(`${API_BASE_URL}/api/save-payment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -51,7 +52,7 @@ export default function Cart() {
         key: "rzp_test_L8m42RzjwBXoft",
         amount: orderData.amount,
         currency: "INR",
-        name: "ARHAM CAKE",
+        name: "Magnolia Bakery",
         description: "Delicious Cakes",
         order_id: orderData.id,
         handler: async function (response) {
@@ -61,7 +62,7 @@ export default function Cart() {
         modal: {
           ondismiss: async function () {
             try {
-              await fetch("http://localhost:5005/api/save-payment", {
+              await fetch(`${API_BASE_URL}/api/save-payment`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -85,7 +86,7 @@ export default function Cart() {
 
       rzp.on("payment.modal.closed", async () => {
         try {
-          await fetch("http://localhost:5005/api/save-payment", {
+          await fetch(`${API_BASE_URL}/api/save-payment`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -109,7 +110,7 @@ export default function Cart() {
       console.error("Checkout error:", error.message);
       toast.error("❌ Checkout failed. Please try again.");
 
-      await fetch("http://localhost:5005/api/save-payment", {
+      await fetch(`${API_BASE_URL}/api/save-payment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -131,7 +132,7 @@ export default function Cart() {
   const verifyPayment = async (response) => {
     try {
       console.log("verify function called");
-      const res = await fetch("http://localhost:5005/api/verify-payment", {
+      const res = await fetch(`${API_BASE_URL}/api/verify-payment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(response),
@@ -140,7 +141,7 @@ export default function Cart() {
       const result = await res.json();
       let status = result.success ? "successful" : "failed";
 
-      const saveResponse = await fetch("http://localhost:5005/api/save-payment", {
+      const saveResponse = await fetch(`${API_BASE_URL}/api/save-payment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -173,7 +174,7 @@ export default function Cart() {
     } catch (error) {
       console.error("❌ Error during payment verification:", error);
 
-      await fetch("http://localhost:5005/api/save-payment", {
+      await fetch(`${API_BASE_URL}/api/save-payment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

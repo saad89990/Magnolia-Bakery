@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import autoTable from "jspdf-autotable";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
 export default function MyOrders() {
     const [orders, setOrders] = useState([]);
@@ -17,7 +19,7 @@ export default function MyOrders() {
 
     const fetchOrders = async () => {
         try {
-            const res = await fetch(`http://localhost:5005/api/my-orders/${userid}`);
+            const res = await fetch(`${API_BASE_URL}/api/my-orders/${userid}`);
             const data = await res.json();
 
             // if (data.success && Array.isArray(data.orders)) {
@@ -61,7 +63,7 @@ export default function MyOrders() {
         doc.setFont("helvetica", "bold");
         doc.setFontSize(18);
         doc.setTextColor("#000");
-        doc.text("ArhamCake - Invoice", 14, 20);
+        doc.text("MagnoliaBakery - Invoice", 14, 20);
 
         doc.setFontSize(12);
         doc.setFont("helvetica", "normal");

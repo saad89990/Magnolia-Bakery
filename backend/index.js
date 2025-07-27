@@ -14,6 +14,7 @@ const PORT = process.env.PORT;
 // Middleware
 // app.use(cors());
 const allowedOrigins = [
+  "https://magnolia-bakery.onrender.com",
   "http://localhost:3000",
   "https://magnolia-bakery.vercel.app",
   "https://magnolia-bakery-190d8lp9n-saad-sheikhs-projects.vercel.app"

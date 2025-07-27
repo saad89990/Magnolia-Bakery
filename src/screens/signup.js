@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";  // ✅ Correct import
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
 export default function Signup() {
   const navigate = useNavigate(); // ✅ Correct usage
@@ -17,7 +19,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5005/api/createuser", {
+      const response = await fetch(`${API_BASE_URL}/api/createuser`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

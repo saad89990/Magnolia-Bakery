@@ -1,12 +1,12 @@
+import "./Home.css";
 import React, { useState, useEffect, useRef } from "react";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
 import FloatingCart from "./FloatingCart"; // update path as needed
 import { useCart } from "../components/contextreducer";
-
-// ✅ Import Carousel from Bootstrap
-// import { Carousel } from "bootstrap";
 import Carousel from "bootstrap/js/dist/carousel";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
 export default function Home() {
   const cart = useCart();
@@ -47,7 +47,8 @@ export default function Home() {
   }, []);
 
   const loaddata = async () => {
-    let response = await fetch("http://localhost:5005/api/fooddata", {
+    console.log("API_URL:",API_BASE_URL);
+    let response = await fetch(`${API_BASE_URL}/api/fooddata`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,6 +67,7 @@ export default function Home() {
   useEffect(() => {
     console.log("food item:", fooditem);
   }, [fooditem]);
+  console.log("API_BASE_URL:", API_BASE_URL); 
 
   return (
     <>
@@ -164,35 +166,52 @@ export default function Home() {
         </button>
       </div>
 
-      <div className="container">
-        {foodcat.length !== 0 ? (
-          foodcat.map((cat) => (
-            <div key={cat._id}>
-              <h3 className="mt-3">{cat.CategoryName}</h3>
-              <hr />
-              <div className="row">
-                {fooditem.length !== 0 ? (
-                  fooditem
-                    .filter(
-                      (item) =>
-                        item.CategoryName === cat.CategoryName &&
-                        item.name.toLowerCase().includes(search.toLowerCase())
-                    )
-                    .map((item) => (
-                      <div key={item._id} className="col-md-4 mb-4">
-                        <Card item={item} />
-                      </div>
-                    ))
-                ) : (
-                  <div>No items found</div>
-                )}
-              </div>
-            </div>
-          ))
-        ) : (
-          <div>No categories found</div>
-        )}
+        <>
+  {foodcat.length !== 0 ? (
+    <div className="container">
+      {foodcat.map((cat) => (
+        <div key={cat._id}>
+          <h3 className="mt-3">{cat.CategoryName}</h3>
+          <hr />
+          <div className="row">
+            {fooditem.length !== 0 ? (
+              fooditem
+                .filter(
+                  (item) =>
+                    item.CategoryName === cat.CategoryName &&
+                    item.name.toLowerCase().includes(search.toLowerCase())
+                )
+                .map((item) => (
+                  <div key={item._id} className="col-md-4 mb-4">
+                    <Card item={item} />
+                  </div>
+                ))
+            ) : (
+              <div>No items found</div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  ) : (
+     <>
+    {console.log("No categories found (empty foodcat) - showing special loader")}
+    <section className="cake-loading-section">
+      <div className="cake-loader-content">
+        <span className="cake-emoji" aria-label="cake" role="img">
+          🎂
+        </span>
+        <div className="cake-loading-title">Loading Cake Categories…</div>
+        <div className="cake-loading-shimmer"></div>
+        <div className="cake-loading-subtext">
+          Let us bake something fresh for you!
+        </div>
       </div>
+    </section>
+  </>
+  )}
+</>
+
 
       <FloatingCart />
       <Footer />

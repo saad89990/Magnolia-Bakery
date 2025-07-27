@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 
-const BASE_URL = process.env.BASE_URL || "http://localhost:5005";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export default function Login() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -14,7 +14,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${BASE_URL}/api/loginuser`, {
+      const res = await fetch(`${API_BASE_URL}/api/loginuser`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credentials),

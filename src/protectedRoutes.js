@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navigate,useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const ProtectedRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null); // Initially unknown state
@@ -9,7 +10,7 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch("http://localhost:5005/api/check-auth", {
+        const response = await fetch(`${API_BASE_URL}/api/check-auth`, {
           method: "GET",
           credentials: "include", // ✅ Ensures cookies are sent
         });

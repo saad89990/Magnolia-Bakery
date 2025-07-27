@@ -10,7 +10,7 @@ export default function Footer() {
 
             {/* Logo & Tagline */}
             <div className="footer-section">
-              <h2 className="footer-logo">Arham<span>Cake</span></h2>
+              <h2 className="footer-logo">Magnolia<span>Bakery</span></h2>
               <p className="footer-text">Baking happiness into every slice — fresh, beautiful, and custom-made for every celebration.</p>
             </div>
 
@@ -29,7 +29,7 @@ export default function Footer() {
             <div className="footer-section">
               <h4>Quick Links</h4>
               <ul>
-                <li><Link to="/order" className="special-link">Order Now</Link></li>
+                <li><Link to="/contact" className="special-link">Order Now</Link></li>
                 <li><Link to="/faq">FAQ</Link></li>
                 <li><Link to="/privacy">Privacy</Link></li>
                 <li><Link to="/terms">Terms</Link></li>
@@ -39,7 +39,7 @@ export default function Footer() {
             {/* Contact & Social */}
             <div className="footer-section">
               <h4>Contact Us</h4>
-              <p>Email: hello@arhamcake.com</p>
+              <p>Email: hello@MagnoliaBakery.com</p>
               <p>Phone: +91 9325213064</p>
               <div className="footer-socials">
                 <a href="#"><i className="fab fa-facebook-f"></i></a>
@@ -51,7 +51,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-bottom">
-            &copy; {new Date().getFullYear()} Arham Cake. All rights reserved.
+            &copy; {new Date().getFullYear()} Magnolia Bakery. All rights reserved.
           </div>
         </div>
       </footer>

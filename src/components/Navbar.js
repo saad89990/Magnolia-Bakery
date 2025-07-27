@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useCart } from "../components/contextreducer";
 import "./Navbar.css";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
 export default function Navbar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -16,7 +18,7 @@ export default function Navbar() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch("http://localhost:5005/api/check-auth", {
+        const response = await fetch(`${API_BASE_URL}/api/check-auth`, {
           method: "GET",
           credentials: "include",
         });
@@ -42,7 +44,7 @@ export default function Navbar() {
   // Handle logout
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:5005/api/logout", {
+      const response = await fetch(`${API_BASE_URL}/api/logout`, {
         method: "POST",
         credentials: "include",
       });

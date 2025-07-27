@@ -17,7 +17,7 @@ export default function Privacy() {
 
       <div className="section">
         <h2>Your Rights</h2>
-        <p>You may request access, updating, or deletion of your personal information at any time by contacting hello@arhamcake.com.</p>
+        <p>You may request access, updating, or deletion of your personal information at any time by contacting hello@MagnoliaBakery.com</p>
       </div>
     </div>
   );
